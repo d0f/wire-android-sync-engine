@@ -20,6 +20,7 @@ package com.waz.service.conversation
 import com.waz.ZLog._
 import com.waz.api
 import com.waz.api.MessageContent.Asset.ErrorHandler
+import com.waz.api.MessageContent.Text
 import com.waz.api.impl._
 import com.waz.api.{ImageAssetFactory, Message, NetworkMode}
 import com.waz.content._
@@ -197,6 +198,8 @@ class ConversationsUiService(assets: AssetService, users: UserService, usersStor
         Future.failed(new IllegalArgumentException(s"MessageContent: $content is not supported yet"))
     }
   }
+
+  def updateMessage(convId: ConvId, id: MessageId, content: Text): Future[Unit] = ???
 
   def deleteMessage(convId: ConvId, id: MessageId): Future[Unit] = for {
     _ <- messages.content.deleteOnUserRequest(Seq(id))

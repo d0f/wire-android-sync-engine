@@ -145,7 +145,7 @@ class Message(val id: MessageId, var data: MessageData, var likes: IndexedSeq[Us
 
   override def recall(): Unit = context.zms.flatMapFuture(_.convsUi.recallMessage(data.convId, id))
 
-  override def update(content: Text): Unit = ???
+  override def update(content: Text): Unit = context.zms.flatMapFuture(_.convsUi.updateMessage(data.convId, id, content))
 
   override def equals(other: Any): Boolean = other match {
     case other: Message => id == other.id
